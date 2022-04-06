@@ -1,0 +1,51 @@
+setting:
+  device : cuda:0
+
+{dataset name}:
+  basePath: ./
+  train_csv : data/train_data.csv
+  valid_csv : data/valid_data.csv  
+  test_csv : data/test_data.csv
+
+dataloader:
+  Train:
+    batch_size: 64
+    shuffle: True
+    num_workers: 2
+
+  Validation:
+    batch_size: 64
+    shuffle: False
+    num_workers: 2
+
+  Test:
+    batch_size: 64
+    shuffle: False
+    num_workers: 2
+
+
+load_saved_phone : True
+
+train:
+  epochs : 100
+  model_load_path: [False, "models" ]
+  mdoel_save_path: "models"
+  half_lr : True
+  early_stop : True # early training when no improvement for 10 epochs
+  clipping : False
+  max_norm : 5.0 # Gradient norm threshold to clip
+  print_freq : 10 #frequency of printing training info
+  model_path : bestmodel.pth.tar
+  check_point : [True,1] # Enables checkpoint saving of model per 10epochs
+
+optimizer:
+  name: Adam  #Adam, sgd
+  lr : !!float 8e-5
+  weight_decay : 0.0
+  momentum : 0.9
+
+scheduler:
+    name : plateau
+    factor : 0.5
+    patience : 3  #-> 논문 3
+    min_lr : !!float 1e-8
