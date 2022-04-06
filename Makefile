@@ -1,34 +1,33 @@
-ean: clean-pyc clean-test
+clean: clean-pyc clean-test
 
 ##### basic #####
 set-git:
-		git config --local commit.template .gitmessage
-			git config --global core.editor "vim"
+	git config --local commit.template .gitmessage
+	git config --global core.editor "vim"
 
 set-dev:
-		pip3 install -r requirements-dev.txt -r requirements.txt
+	pip3 install -r requirements-dev.txt -r requirements.txt
 
 test:
-		pytest tests/
+	pytest tests/
 
 style:
-		black --config pyproject.toml .
-			isort --settings-path pyproject.toml .
+	black --config pyproject.toml .
+	isort --settings-path pyproject.toml .
 
 quality:
-		black --config pyproject.toml --check .
-			isort --settings-path pyproject.toml --check-only .
+	black --config pyproject.toml --check .
+	isort --settings-path pyproject.toml --check-only .
 
 #####  clean  #####
 clean-pyc:
-		find . -name '*.pyc' -exec rm -f {} +
-			find . -name '*.pyo' -exec rm -f {} +
-				find . -name '*~' -exec rm -f {} +
-					find . -name '__pycache__' -exec rm -fr {} +
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -fr {} +
 
 clean-test:
-		rm -f .coverage
-			rm -f .coverage.*
-				rm -rf .pytest_cache
-					rm -rf .mypy_cache
-
+	rm -f .coverage
+	rm -f .coverage.*
+	rm -rf .pytest_cache
+	rm -rf .mypy_cache

@@ -1,5 +1,4 @@
-
-ol.black]
+[tool.black]
 line-length = 120
 target-version = ['py36', 'py37', 'py38']
 include = '\.py$'
@@ -31,4 +30,3 @@ skip = 'datasets'
 known_typing = ["typing", "types", "typing_extensions", "mypy", "mypy_extensions"]
 sections = ["FUTURE", "TYPING", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 profile = "black"
-
